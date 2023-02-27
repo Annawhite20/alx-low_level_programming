@@ -3,7 +3,9 @@
 /**
  * rev_string - reverses a string
  * @s: string to be reversed
+ * Return: void
  */
+
 void rev_string(char *s)
 {
 	char tmp;
@@ -26,4 +28,4 @@ void rev_string(char *s)
 		s[len1--] = tmp;
 	}
 }
-Footer
+
