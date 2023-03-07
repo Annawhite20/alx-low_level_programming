@@ -1,20 +1,22 @@
-# include "main.h"
+#include "main.h"
+
 /**
- * _memset - Entry point
- * @s: pointed destintion
- * @b: constant byte
- * @n:bytes
+ * _memset - fill memory with const
+ * @s: space of the memory
+ * @b: bytes
+ * @n: memory area
  *
- * Return: Always 0 (Success)
+ * Return: return ponter to s string
  */
-char *_memset(char *s,char *b, unsigned int n)
- {
-       int i = 0;
-            
-      for(i = 0;i < n; i++)
-      {     	      s[i] = b;
-                      n--;
-                        
-      }      
-      return (s);
- }     
+
+char *_memset(char *s, char b, unsigned int n)
+{
+	unsigned int i = 0;
+
+	while (i < n)
+	{
+		s[i] = b;
+		i++;
+	}
+	return (s);
+}     
