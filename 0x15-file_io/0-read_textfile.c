@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-
+#include <main.h>
+#include <stdio.h
+>
 /**
  * read_textfile.Read text file print to STDOUT.
  * @filename:text file being read
@@ -10,21 +8,44 @@
  * Return:w- actual number of bytes read and printed
  *     0 whent function fails or filname is NULL.
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+ssize_t read_textfile(const char *filename, size_t letter)
 {
-	char *buf;
-	ssize_t fb;
-	ssize_t w;
-	ssize_t t;
+	int fp; /*fle descriptor*/
+	int readd; /*no. of bytes read*/
+	int written; /*no. of bytes printed*/
+	char *buffer; /*temp stores data to read*/
 
-	fb = open (filename, O_RDONLY);
-	if (fb = = -1)
+	if (filename == NULL)
+	{
 		return (0);
-	buf = malloc(sizeof(char) *letters);
-	t =read(fd,buf,letters);
-	w = write(STDOUT_FILEND,buf,t);
+	}
+	fp = open(filename, O_RDONLY);
 
-	free(buf);
-	close(fd)
-	return(w)
+	if (fp == -1)
+	{
+		return (0);
+	}
+
+	buffer = malloc(sizeof(char) * letters);
+
+	if (buffer == NULL)
+	{
+		return (0);
+	}
+	readd = read(fp, buffer, letters);
+	if (readd == -1)
+	{
+		free(buffer);
+		return (0);
+	}
+	buffer[readd] = '\0';
+	close(fp);
+	written = write(STDOUT_FILENO, buffer, readd);
+	if (written == -1)
+	{
+		free(buffer);
+		return (0);
+	}
+	free(buffer);
+	return (written);
 }
